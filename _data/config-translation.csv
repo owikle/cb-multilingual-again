@@ -1,4 +1,4 @@
-data_translate,description,eng,spa
+translate_id,description,en,es
 nav-home,Navigation menu Home option,Home,Inicio
 nav-browse,Navigation menu Browse option,Browse,Búsqueda
 nav-subjects,Navigation menu Subjects option,Subjects,Categorías
@@ -29,17 +29,17 @@ home-data,Home data download card title,Collection as Data,Recopilación como da
 home-download,Home data download card subtitle,click to download,haga clic para descargar
 home-built,Home footer built with,built with,construido con
 home-update,Home footer last updated,Last updated,Última actualización
-metadata-csv,Metadata CSV download button,Metadata CSV,Metadatos CSV
-metadata-json,Metadata JSON download button,Metadata JSON,Metadatos JSON
-subjects-csv,Subjects CSV download button,Subjects CSV,Categorías CSV
-subjects-json,Subjects JSON download button,Subjects JSON,Categorías JSON
-geodata-json,Geodata JSON download button,Geodata JSON,Geodatos JSON
-locations-csv,Locations CSV download button,Locations CSV,Ubicaciones CSV
-locations-json,Locations JSON download button,Locations JSON,Ubicaciones JSON
-timeline-json,Timeline JSON download button,Timeline JSON,Cronología JSON
-facets-json,Facets JSON download button,Facets JSON,Facetas JSON
-timelinejs-json,TimelineJS JSON download button,TimelineJS JSON,TimelineJS JSON
-source-code,Source code download button,Source Code,Código fuente
+data-download-metadata-csv,Metadata CSV download button,Metadata CSV,Metadatos CSV
+data-download-metadata-json,Metadata JSON download button,Metadata JSON,Metadatos JSON
+data-download-subjects-csv,Subjects CSV download button,Subjects CSV,Categorías CSV
+data-download-subjects-json,Subjects JSON download button,Subjects JSON,Categorías JSON
+data-download-geodata-json,Geodata JSON download button,Geodata JSON,Geodatos JSON
+data-download-locations-csv,Locations CSV download button,Locations CSV,Ubicaciones CSV
+data-download-locations-json,Locations JSON download button,Locations JSON,Ubicaciones JSON
+data-download-timeline-json,Timeline JSON download button,Timeline JSON,Cronología JSON
+data-download-facets-json,Facets JSON download button,Facets JSON,Facetas JSON
+data-download-timelinejs-json,TimelineJS JSON download button,TimelineJS JSON,TimelineJS JSON
+data-download-source-code,Source code download button,Source Code,Código fuente
 view-full,Instructions underneath item image,Click to view full screen,Click para ver pantalla completa
 item-download-image,Item page image download button,Download Image,Descargar imagen
 pdf-render,Instructions for PDF not rendering on item page,The PDF is not rendering in your browser. Please use the button below to download the PDF.,El PDF no se muestra en su navegador. Utilice el botón de abajo para descargar el PDF.
@@ -106,3 +106,17 @@ about-title,About page title,About CollectionBuilder-GH,Sobre CollectionBuilder-
 about-p1,About page CollectionBuilder text,"<p>This demo site features objects from the University of Idaho Library's Digital Collections and is generated using CollectionBuilder-GH, a project to create a free and simple digital collection hosted on GitHub Pages from:</p> <ul><li>a CSV of collection metadata</li><li>a folder of JPG images or PDF documents</li></ul> <p>collectionbuilder-gh is intended as a simple template for hands-on teaching about digital libraries.</p>","<p>Este sitio de demostración presenta objetos de la Colecciones digitales de la Universidad de Idaho y se genera utilizando CollectionBuilder-GH, un proyecto para crear una colección digital gratuita y sencilla albergada en GitHub Pages desde:</p> <ul><li>un CSV de metadatos de la colección</li><li>una carpeta de imágenes JPG o documentos PDF</li></ul> <p>collectionbuilder-gh pretende ser una plantilla simple para la enseñanza de destrezas de bibliotecología digital.</p>"
 date-sort,Sort by locations on browse sort dropdown,Date,Fecha
 date-created-display-name,Date created field name on item page,Date Created,Fecha de Creacion
+metadata-title,title field in metadata,Title,Título
+metadata-creator,Creatorfield in metadata,Creator,Creador
+metadata-date,Date field in metadata,Date,Fecha
+metadata-description,Description field in metadata,Description,Descripción
+metadata-subject,Subjects field in metadata,Subjects,Sujetos
+metadata-location,Location field in metadata,Location,Ubicación
+metadata-latitude,Latitude field in metadata,Latitude,Latitud
+metadata-longitude,Longitude field in metadata,Longitude,Longitud
+metadata-source,Source field in metadata,Source,Fuente
+metadata-identifier,Identifier field in metadata,Source Identifier,identificador
+metadata-type,Type field in metadata,Type,Tipo
+metadata-format,Format field in metadata,Format,Formato
+metadata-rights,Rights field in metadata,Rights,Derechos
+metadata-rightsstatement,Rights Statement field in metadata,Rights Statement,Declaración de derechos
