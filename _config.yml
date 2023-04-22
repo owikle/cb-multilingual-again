@@ -29,12 +29,21 @@ description: "CollectionBuilder-GH is a template for creating small digital coll
 # creator of the digital collection, to appear in meta tags; we typically use our GitHub usernames but feel free to just use your name
 author: owikle
 
-# set languages used on site
-site_languages: 
-- lang_id: eng
-  lang_display: English
-- lang_id: spa
-  lang_display: Español
+lang-default: en
+
+# set languages
+defaults:
+  -
+    scope:
+      path: 'es'
+    values:
+      permalink: /es/:basename
+      lang: 'es'
+  -
+    scope:
+      path: 'pages'
+    values:
+      lang: 'en'
 
 ##########
 # COLLECTION SETTINGS
@@ -51,8 +60,6 @@ organization-name: "Arte Público Press"
 organization-link: https://artepublicopress.com/
 organization-logo-banner: /assets/img/APP_Logo_2019.png
 organization-logo-nav: /assets/img/app_logo_white_sm.png
-
-
 
 ##########
 # GOOGLE SERVICES [optional!]
