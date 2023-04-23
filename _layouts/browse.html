@@ -25,9 +25,9 @@ custom-foot: js/browse-js.html
             <div class="dropdown-menu browse-sort-menu" aria-labelledby="browseSortButton">
                 <button class="dropdown-item browse-sort-item active" data-filter="random">Random</button>
                 <button class="dropdown-item browse-sort-item" data-filter="title">Title</button>
-                {% assign sort_options = site.data.config-browse | where_exp: 'i','i.sort_name != nil' %}
+                {% assign sort_options = site.data.config-browse | where_exp: 'i','i.translate_id_sort_name != nil' %}
                 {% for o in sort_options %}
-                <button class="dropdown-item browse-sort-item" data-filter="{{ o.field | escape }}">{{ o.sort_name }}</button>
+                <button class="dropdown-item browse-sort-item" data-filter="{{ o.field | escape }}">{{ site.data.config-translation | where: "translate_id", o.translate_id_sort_name | map: page.lang | first }}</button>
                 {% endfor %}
             </div>
         </div>

@@ -5,7 +5,7 @@
     /* add item data */
     var items = { 
         {%- for item in site.data[site.metadata] -%}
-        {{ item.objectid | jsonify }} : { {% unless fields contains 'title' %}"title": {{ item.title | jsonify }}, {% endunless %}{% for f in fields %}{% if item[f.field] %}{{ f.field | jsonify }}: {{ item[f.field] | jsonify }}, {% endif %}{% endfor %}{% if item.youtubeid %} "youtube": {{ item.youtubeid | jsonify }}, {% endif %}{% if item.vimeoid %} "vimeo": {{ item.vimeoid | jsonify }}, {% endif %}"format": {{ item.format | jsonify }}, {% if  item.filename contains '/' %}"filename": "{{ item.filename }}" {% else %}"filename":{{ '/objects/' | relative_url | append: item.filename | jsonify }}{% endif %} }{% unless forloop.last %}, {% endunless %}
+        {{ item.objectid | jsonify }} : { {% unless fields contains 'title' %}"title": {% if page.lang == site.lang-default %}{{ item.title | jsonify }}{% else %}{% assign translated_title = 'title-' | append: page.lang %}{{ item[translated_title] | jsonify }}{% endif %}, {% endunless %}{% for f in fields %}{% if item[f.field] %}{{ f.field | jsonify }}: {{ item[f.field] | jsonify }}, {% endif %}{% endfor %}{% if item.youtubeid %} "youtube": {{ item.youtubeid | jsonify }}, {% endif %}{% if item.vimeoid %} "vimeo": {{ item.vimeoid | jsonify }}, {% endif %}"format": {{ item.format | jsonify }}, {% if  item.filename contains '/' %}"filename": "{{ item.filename }}" {% else %}"filename":{{ '/objects/' | relative_url | append: item.filename | jsonify }}{% endif %} }{% unless forloop.last %}, {% endunless %}
         {% endfor %}
     };
     /* get query id from URL */
@@ -56,13 +56,13 @@
             } else {
                 itemYear = record.date;
             }
-            itemLink += '<a href="{{ "/timeline.html" | relative_url }}#y' + itemYear + '" class="m-2 btn btn-outline-dark">View on Timeline</a>';
+            itemLink += '<a href="{% unless page.lang == site.lang-default %}/{{ page.lang }}{% endunless %}{{ "/timeline.html" | relative_url }}#y' + itemYear + '" class="m-2 btn btn-outline-dark">View on Timeline</a>';
         }
         {%- endif -%}
         {% if stubs contains "map" %}
         /* add link to view on map */ 
         if (record.latitude && record.longitude) {
-            itemLink += '<a href="{{ '/map.html' | relative_url }}#' + record.latitude + ',' + record.longitude + '" class="m-2 btn btn-outline-dark">View on Map</a>';
+            itemLink += '<a href="{% unless page.lang == site.lang-default %}/{{ page.lang }}{% endunless %}{{ '/map.html' | relative_url }}#' + record.latitude + ',' + record.longitude + '" class="m-2 btn btn-outline-dark">View on Map</a>';
         }
         {%- endif -%}
 
@@ -81,13 +81,13 @@
             var browseLinks = "";
             for (var i = 0, len = topics.length; i < len; i++) {
                 if (topics[i] != "") {
-                    browseLinks += '<a class="btn btn-link" href="{{ '/browse.html' | relative_url }}#' + encodeURIComponent(topics[i].trim()) + '">' + topics[i].trim() + '</a> ';
+                    browseLinks += '<a class="btn btn-link" href="{% unless page.lang == site.lang-default %}/{{ page.lang }}{% endunless %}{{ '/browse.html' | relative_url }}#' + encodeURIComponent(topics[i].trim()) + '">' + topics[i].trim() + '</a> ';
                 }
             }
-            fields += '<dt class="field">{{ site.data.config-translation | where: "translate_id", f.translate_id_metadata | map: page.lang }}</:</dt> <dd class="field-value">' + browseLinks + '</dd>';
+            fields += '<dt class="field">{{ site.data.config-translation | where: "translate_id", f.translate_id_metadata | map: page.lang | first }}</:</dt> <dd class="field-value">' + browseLinks + '</dd>';
         }
         {%- else -%}
-        if (record[{{ f.field | jsonify }}]) { fields += '<dt class="field">{{ site.data.config-translation | where: "translate_id", f.translate_id_metadata | map: page.lang }}:</dt> <dd class="field-value">{% if f.external_link == "true" %}<a href="' + record[{{ f.field | jsonify }}] + '" target="_blank" rel="noopener">' + record[{{ f.field | jsonify }}] + '</a>{% else %}' + record[{{ f.field | jsonify }}] + '{% endif %}</dd>'; }
+        if (record[{{ f.field | jsonify }}]) { fields += '<dt class="field">{{ site.data.config-translation | where: "translate_id", f.translate_id_metadata | map: page.lang | first }}:</dt> <dd class="field-value">{% if f.external_link == "true" %}<a href="' + record[{{ f.field | jsonify }}] + '" target="_blank" rel="noopener">' + record[{{ f.field | jsonify }}] + '</a>{% else %}' + record[{{ f.field | jsonify }}] + '{% endif %}</dd>'; }
         {% endif %}{% endfor %}
         fields += '</dl>';
         document.getElementById("item-metadata").innerHTML = fields;

@@ -2,19 +2,19 @@
 {% assign cb_icons = site.pages | where: "name","cb-icons.svg" | first %}
 {% assign icons = cb_icons.icons %}{%- endif -%}
 {%- assign items = site.data[site.metadata] | where_exp: 'item','item.objectid' -%}
-{%- assign fields = site.data.config-browse -%}
+{%- assign fields = site.data.config-browse | where_exp: 'field', 'field.lang contains page.lang' -%}
 <script>
 
 /* add items */
 var items = [
     {% for i in items %}
-    { "title":{{ i.title | strip | jsonify }}, "format":{% if i.format %}{{ i.format | jsonify }}{% else %}""{% endif %}, {% for f in fields %}{% if i[f.field] %}{{ f.field | jsonify }}:{{ i[f.field] | strip | jsonify }},{% endif %}{% endfor %} {% if i.youtubeid %} "youtube": {{ i.youtubeid | jsonify }}, {% endif %}{% if  i.filename contains '/' %}"filename": "{{ i.filename }}" {% else %}"filename":"{{ '/objects/' | relative_url | append: i.filename }}"{% endif %}, "id":{{ i.objectid | jsonify }} }{% unless forloop.last %},{% endunless %}{% endfor %}
+    { "title":{% if page.lang == site.lang-default %}{{ i.title | strip | jsonify }}{% else %}{% assign translated_title = 'title-' | append: page.lang %}{{ i[translated_title] | strip | jsonify }}{% endif %}, "format":{% if i.format %}{{ i.format | jsonify }}{% else %}""{% endif %}, {% for f in fields %}{% if i[f.field] %}{{ f.field | jsonify }}:{{ i[f.field] | strip | jsonify }},{% endif %}{% endfor %} {% if i.youtubeid %} "youtube": {{ i.youtubeid | jsonify }}, {% endif %}{% if  i.filename contains '/' %}"filename": "{{ i.filename }}" {% else %}"filename":"{{ '/objects/' | relative_url | append: i.filename }}"{% endif %}, "id":{{ i.objectid | jsonify }} }{% unless forloop.last %},{% endunless %}{% endfor %}
 ];
 
 /* function to create cards for each item */ 
 function makeCard(obj) {
     // find item link
-    var itemHref = "{{ '/item.html' | relative_url | append: '?id=' }}" + obj.id;
+    var itemHref = "{% unless page.lang == site.lang-default %}/{{ page.lang }}{% endunless %}{{ '/item.html' | relative_url | append: '?id=' }}" + obj.id;
     // find images
     var imgSrc, thumbSrc;
     // add images or thumb for objects based on format
@@ -47,12 +47,12 @@ function makeCard(obj) {
     card += '<p class="card-text">';
     {% for f in fields %}{% unless f.hidden == 'true' %}
     if(obj[{{ f.field | jsonify }}]){
-    {% if f.display_name %}card += '<strong>{{ f.display_name }}:</strong> ';{% endif %}
+    {% if f.display_name %}card += '<strong>{{ site.data.config-translation | where: "translate_id", f.translate_id_browse | map: page.lang | first }}:</strong> ';{% endif %}
     {% if f.btn == 'true' %}
     var btns = obj[{{ f.field | jsonify }}].split(";");
     for (var i = 0, len = btns.length; i < len; i++) {
       if(btns[i] != "") {
-        card += '<a class="btn btn-sm btn-secondary m-1 text-wrap" href="{{ '/browse.html' | relative_url }}#' + encodeURIComponent(btns[i].trim()) + '">' + btns[i].trim() + '</a>';
+        card += '<a class="btn btn-sm btn-secondary m-1 text-wrap" href="{% unless page.lang == site.lang-default %}/{{ page.lang }}{% endunless %}{{ '/browse.html' | relative_url }}#' + encodeURIComponent(btns[i].trim()) + '">' + btns[i].trim() + '</a>';
       }
     }
     {% else %}
