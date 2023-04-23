@@ -47,7 +47,7 @@ function makeCard(obj) {
     card += '<p class="card-text">';
     {% for f in fields %}{% unless f.hidden == 'true' %}
     if(obj[{{ f.field | jsonify }}]){
-    {% if f.display_name %}card += '<strong>{{ site.data.config-translation | where: "translate_id", f.translate_id_browse | map: page.lang | first }}:</strong> ';{% endif %}
+    {% if f.translate_id_browse %}card += '<strong>{{ site.data.config-translation | where: "translate_id", f.translate_id_browse | map: page.lang | first }}:</strong> ';{% endif %}
     {% if f.btn == 'true' %}
     var btns = obj[{{ f.field | jsonify }}].split(";");
     for (var i = 0, len = btns.length; i < len; i++) {

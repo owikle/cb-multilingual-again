@@ -1,7 +1,7 @@
 field,translate_id_browse,lang,btn,hidden,translate_id_sort_name
 date,metadata-date,en;es,,,metadata-date
 creator,metadata-creator,en;es,,,
-subject-en,metadata-subject,en,true
-subject-es,metadata-subject,es,true
-location-en,metadata-location,en,true
-location-es,metadata-location,es,true
+subject-en,,en,true
+subject-es,,es,true
+location-en,,en,true
+location-es,,es,true
