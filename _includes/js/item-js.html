@@ -1,4 +1,4 @@
-{%- assign fields = site.data.config-metadata -%}
+{%- assign fields = site.data.config-metadata | where_exp: 'field', 'field.lang contains page.lang' -%}
 {%- assign stubs = site.data.config-nav | map: 'stub' | join: ';' -%}
 <script>
 (function(){
@@ -84,10 +84,10 @@
                     browseLinks += '<a class="btn btn-link" href="{{ '/browse.html' | relative_url }}#' + encodeURIComponent(topics[i].trim()) + '">' + topics[i].trim() + '</a> ';
                 }
             }
-            fields += '<dt class="field">{{ f.display_name }}:</dt> <dd class="field-value">' + browseLinks + '</dd>';
+            fields += '<dt class="field">{{ site.data.config-translation | where: "translate_id", f.translate_id_metadata | map: page.lang }}</:</dt> <dd class="field-value">' + browseLinks + '</dd>';
         }
         {%- else -%}
-        if (record[{{ f.field | jsonify }}]) { fields += '<dt class="field">{{ f.display_name }}:</dt> <dd class="field-value">{% if f.external_link == "true" %}<a href="' + record[{{ f.field | jsonify }}] + '" target="_blank" rel="noopener">' + record[{{ f.field | jsonify }}] + '</a>{% else %}' + record[{{ f.field | jsonify }}] + '{% endif %}</dd>'; }
+        if (record[{{ f.field | jsonify }}]) { fields += '<dt class="field">{{ site.data.config-translation | where: "translate_id", f.translate_id_metadata | map: page.lang }}:</dt> <dd class="field-value">{% if f.external_link == "true" %}<a href="' + record[{{ f.field | jsonify }}] + '" target="_blank" rel="noopener">' + record[{{ f.field | jsonify }}] + '</a>{% else %}' + record[{{ f.field | jsonify }}] + '{% endif %}</dd>'; }
         {% endif %}{% endfor %}
         fields += '</dl>';
         document.getElementById("item-metadata").innerHTML = fields;

@@ -114,8 +114,8 @@ metadata-subject,Subjects field in metadata,Subjects,Sujetos
 metadata-location,Location field in metadata,Location,Ubicación
 metadata-latitude,Latitude field in metadata,Latitude,Latitud
 metadata-longitude,Longitude field in metadata,Longitude,Longitud
-metadata-source,Source field in metadata,Source,Fuente
-metadata-identifier,Identifier field in metadata,Source Identifier,identificador
+metadata-source,Source field in metadata,Source,Origen
+metadata-identifier,Identifier field in metadata,Source Identifier,Identificador de origen
 metadata-type,Type field in metadata,Type,Tipo
 metadata-format,Format field in metadata,Format,Formato
 metadata-rights,Rights field in metadata,Rights,Derechos
