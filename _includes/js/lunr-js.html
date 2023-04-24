@@ -1,4 +1,4 @@
-{%- assign fields = site.data.config-search -%}
+{%- assign fields = site.data.config-search | where_exp: 'field', 'field.lang contains page.lang' -%}
 {%- assign index_fields = fields | where: 'index','true' -%}
 <script src="{{ '/assets/lib/lunr.min.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/lunr-store.js' | relative_url }}"></script>
@@ -53,7 +53,7 @@ function lunr_search () {
             {% assign display = fields | where: 'display','true' %}
             {% for d in display %}
             {% if forloop.first %}
-            '<p class="h4"><a href="{{ site.baseurl }}/item.html?id=' + store[ref].id + '">' + store[ref][{{ fields[0].field | jsonify }}]  + '</a></p>' +
+            '<p class="h4"><a href="{{ site.baseurl }}{% unless page.lang == site.lang-default %}/{{ page.lang }}{% endunless %}/item.html?id=' + store[ref].id + '">' + store[ref][{{ fields[0].field | jsonify }}]  + '</a></p>' +
             '<p class="ms-3">';
               {% else %}
               if(store[ref][{{ d.field | jsonify }}]) {
