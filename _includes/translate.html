@@ -1,0 +1,1 @@
+{{ site.data.config-translation | where: "translate_id", include.id | map: page.lang | first | default: include.default }}
