@@ -43,13 +43,13 @@ custom-foot: js/timeline-js.html
                 {%- assign inYear = items | where_exp: 'item', 'item.date contains year' -%}
                 {% for item in inYear %}
                 <div class="col-lg-4 col-md-6">
-                    <a href="{{ '/item.html' | relative_url | append: '?id=' | append: item.objectid }}" >
+                    <a href="{% unless page.lang == site.lang-default %}/{{ page.lang }}{% endunless %}{{ '/item.html' | relative_url | append: '?id=' | append: item.objectid }}" >
                         {% if item.format contains 'image' or item.youtubeid %}
-                        <img class="lazyload img-thumbnail" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E" data-src="{% if item.youtubeid %}{{ 'https://img.youtube.com/vi/' | append: item.youtubeid | append: '/hqdefault.jpg' | relative_url }}{% elsif item.filename contains '/' %}{{ item.filename }}{% else %}{{ item.filename | prepend: '/objects/' | relative_url }}{% endif %}" alt="{{ item.title | escape }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ item.title | escape }} | {{ item.date | escape }}">
+                        <img class="lazyload img-thumbnail" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E" data-src="{% if item.youtubeid %}{{ 'https://img.youtube.com/vi/' | append: item.youtubeid | append: '/hqdefault.jpg' | relative_url }}{% elsif item.filename contains '/' %}{{ item.filename }}{% else %}{{ item.filename | prepend: '/objects/' | relative_url }}{% endif %}" alt="{% if page.lang == site.lang-default %}{{ item.title | escape }}{% else %}{% assign translated_title = 'title-' | append: page.lang %}{{ item[translated_title] | escape }}{% endif %}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% if page.lang == site.lang-default %}{{ item.title | escape }}{% else %}{% assign translated_title = 'title-' | append: page.lang %}{{ item[translated_title] | escape }}{% endif %} | {{ item.date | escape }}">
                         {% else %}
                         <div class="card"> 
                             <div class="card-body text-center">
-                                <h4 class="card-title text-dark">{{ item.title }}</h4>
+                                <h4 class="card-title text-dark">{% if page.lang == site.lang-default %}{{ item.title }}{% else %}{% assign translated_title = 'title-' | append: page.lang %}{{ item[translated_title] }}{% endif %}</h4>
                                 <img class="lazyload w-50" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 2'%3E%3C/svg%3E" data-src="{% if item.format contains 'audio' %}
                                 {{ '/assets/lib/icons/' | relative_url }}{{ icons.icon-audio }}.svg
                                 {% elsif item.format contains 'video' %}
