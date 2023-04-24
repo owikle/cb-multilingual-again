@@ -43,7 +43,7 @@
 {% comment %} 
     Grab the field that specifies current page language in config-browse
 {% endcomment %} 
-{% assign langField = browseFields | where_exp: 'b', 'b.lang contains page.lang' | map: 'field' %}
+{% assign langField = browseFields | where_exp: 'b', 'b.lang contains page.lang' | map: 'field' | first %}
 {% capture termsField %}{{ langField }}{% endcapture %}
 
 {% comment %} 
@@ -62,7 +62,7 @@
 <div class="card mb-3">
     {% if include.header %}<h5 class="card-header">{{ include.header }}</h5>{% endif %}
     <div class="card-body">
-        {% if include.title %}<h5 class="card-title">{{ include.title }}</h5>{% endif %}
+        {% if include.title %}<h5 class="card-title">{{ site.data.config-translation | where: 'translate_id', include.title | map: page.lang | first }}</h5>{% endif %}
         <p class="card-text">
             {% for s in topTerms %}
             <a class="btn btn-sm btn-{{ include.btn-color | default: 'primary' }} m-1" href="{% unless page.lang == site.lang-default %}/{{ page.lang }}{% endunless %}{{ s | strip | url_param_escape | prepend: '/browse.html#' | relative_url }}">{{ s | strip }}</a>{% endfor %}
