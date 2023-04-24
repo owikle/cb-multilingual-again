@@ -25,8 +25,26 @@
 {% comment %} 
     Use termsField and termsMax to customize feature 
 {% endcomment %}
-{% assign termsField = include.field | default: "subject" %}
+{% assign allTermsField = include.field | default: "subject" | split: ";" %}
 {% assign termsMax = include.max | default: 5 %}
+
+{% comment %} 
+    Match fields with config-browse
+{% endcomment %} 
+{%- assign browseFields = "" | split: "" -%}
+{%- for a in allTermsField %}
+{%- for f in site.data.config-browse -%}
+{%- if f.field == a -%}
+{% assign browseFields = browseFields | push: f %}
+{%- endif -%}
+{%- endfor -%}
+{%- endfor -%}
+
+{% comment %} 
+    Grab the field that specifies current page language in config-browse
+{% endcomment %} 
+{% assign langField = browseFields | where_exp: 'b', 'b.lang contains page.lang' | map: 'field' %}
+{% capture termsField %}{{ langField }}{% endcapture %}
 
 {% comment %} 
     Liquid below cleans and counts unique terms 
@@ -47,7 +65,7 @@
         {% if include.title %}<h5 class="card-title">{{ include.title }}</h5>{% endif %}
         <p class="card-text">
             {% for s in topTerms %}
-            <a class="btn btn-sm btn-{{ include.btn-color | default: 'primary' }} m-1" href="{{ s | strip | url_param_escape | prepend: '/browse.html#' | relative_url }}">{{ s | strip }}</a>{% endfor %}
+            <a class="btn btn-sm btn-{{ include.btn-color | default: 'primary' }} m-1" href="{% unless page.lang == site.lang-default %}/{{ page.lang }}{% endunless %}{{ s | strip | url_param_escape | prepend: '/browse.html#' | relative_url }}">{{ s | strip }}</a>{% endfor %}
         </p>
     </div>
 </div>
