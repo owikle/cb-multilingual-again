@@ -1,0 +1,15 @@
+{% assign languages = site.site_languages %}
+
+<div class="text-end">
+    <div class="btn-group p-4 lang-buttons border rounded" role="group" aria-label="Basic radio toggle button group">
+        {% for l in languages %}
+        {% if l.default == "true" %}
+        <input type="radio" class="btn-check" name="language_options" id="{{ l.lang_id }}" autocomplete="off">
+        <label class="btn border" for="{{ l.lang_id }}">{{ l.lang_display }}</label>
+        {% else %}
+        <input type="radio" class="btn-check" name="language_options" id="{{ l.lang_id }}" autocomplete="off">
+        <label class="btn border" for="{{ l.lang_id }}">{{ l.lang_display }}</label>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>

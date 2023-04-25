@@ -17,6 +17,10 @@
 }
 </style>
 <div id="home-banner" class="container-fluid mb-0 p-0">
+    {% assign languageNumber = site.site_languages | map: 'lang_id' | join: ';' | split: ';' | size %}
+    {% if languageNumber >= 2 %}
+        {% include language-button.html %}
+    {% endif %}
     <div id="home-title-box" class="position-relative" >
         <div class="p-2 text-center text-white bg-dark bg-opacity-75">
             {% if site.organization-logo-nav %}

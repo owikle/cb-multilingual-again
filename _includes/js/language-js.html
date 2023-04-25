@@ -1,0 +1,32 @@
+<script>
+
+var page_language = "{{ page.lang }}";
+
+// function to update the button color when clicked
+function changeButtonColor(){
+    document.querySelectorAll("input[name='language_options']").forEach(node => {
+        if (node.id === page_language){
+            node.classList.add("btn-active", "focus", "text-white");
+            node.checked = true; 
+        } else { node.classList.remove("btn-active", "focus", "text-white"); }
+    });
+}
+
+// update language button color
+changeButtonColor();
+
+/*
+// radio button selects language
+$("input[name='lang_options']").change(function(){
+    // set the selected language
+    site_language = this.value;
+    // store the new selected language
+    localStorage.setItem("lang", site_language);
+    // update language button color
+    changeButtonColor();
+    // fill translation spans
+    fillTranslationSpans();
+});
+*/
+
+</script>
