@@ -13,15 +13,16 @@ document.querySelectorAll(".lang-button").forEach( node => {
     let id = node.id;
     let newUrl = "";
     let url = window.location.href;
-    let button = document.getElementById(id);
-    if (url.includes(id)){
-        button.href = url;
+    let buttonLink = document.getElementById(id);
+    if (url.includes("/" + id + "/")){
+        buttonLink.href = url;
     } else if (id == defaultLangId){
-        newUrl = url.includes(pageLang) ? url.replace('/' + pageLang, "") : url;
-        button.href = newUrl;
+        let path = "/" + pageLang + "/";
+        newUrl = url.includes(path) ? url.replace(path, "/") : url;
+        buttonLink.href = newUrl;
     } else {
-        button.href = url;
-        button.pathname = '/' + id + button.pathname;
+        buttonLink.href = url;
+        buttonLink.pathname = '/' + id + buttonLink.pathname;
     };
     if (id == pageLang){ 
         node.classList.add("text-white", "btn-active", "focus");
