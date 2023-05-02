@@ -8,7 +8,7 @@
 let pageLang = "{{ page.lang }}";
 let defaultLangId = "{{ defaultLang }}";
 
-// use button ids to set up url for each button
+// use button ids to set up url and style each button
 document.querySelectorAll(".lang-button").forEach( node => {
     let id = node.id;
     let newUrl = "";
@@ -23,6 +23,10 @@ document.querySelectorAll(".lang-button").forEach( node => {
         button.href = url;
         button.pathname = '/' + id + button.pathname;
     };
-})
+    if (id == pageLang){ 
+        node.classList.add("text-white", "btn-active", "focus");
+        node.setAttribute('aria-current', 'page');
+    }
+});
 
 </script>

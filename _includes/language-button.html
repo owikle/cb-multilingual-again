@@ -1,13 +1,7 @@
-{%- assign languages = site.site_languages -%}
-
-<div class="text-end">
+<div class="p-4 border rounded language-buttons">
     <div class="btn-group" role="group" aria-label="Button group to toggle site language">
-        {%- for l in languages -%}
-        {%- if l.default == true -%}
-        <a id="{{ l.lang_id }}" class="btn btn-primary lang-button active" aria-current="page">{{ l.lang_display }}</a>
-        {%- else -%}
-        <a id="{{ l.lang_id }}" class="btn btn-primary lang-button" aria-current="page">{{ l.lang_display }}</a>
-        {%- endif -%}
+        {%- for l in site.site_languages -%}
+        <a id="{{ l.lang_id }}" class="btn border lang-button">{{ l.lang_display }}</a>
         {%- endfor -%}
     </div>
 </div>
