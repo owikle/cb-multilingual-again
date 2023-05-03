@@ -9,13 +9,16 @@
             <nav>
                 <ul id="footer-nav" class="nav nav-pills ">
                     {%- assign navItems = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nil' -%}
+                    {% capture page-url %}{% if page.layout == 'home-infographic' %}{{ page.url | remove: 'index' }}{% else %}{{ page.url | append: '.html' }}{% endif %}{% endcapture %}
                     {% for nav in navItems %}
                     <li class="nav-item">
                     {% if nav.stub %}
-                        <a class="nav-link text-light{% if page.url == nav.stub %} active{% endif %}" href="{{ nav.stub | relative_url }}">{{ nav.display_name }}</a>
+                    {% capture page-stub %}{{ page.lang | prepend: '/' | append: nav.stub }}{% endcapture %}
+                        <a class="nav-link text-light{% if page.lang == site.lang-default and page.url == nav.stub %} active{% elsif page-url == page-stub %} active{% endif %}" href="{% unless page.lang == site.lang-default %}/{{ page.lang }}{% endunless %}{{ nav.stub | relative_url }}">{{ site.data.config-translation | where: "translate_id", nav.translate_id_nav | map: page.lang | first }}</a>
                     {%- else -%}
-                    {% assign childStub = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nav.display_name' | first %}
-                        <a class="nav-link text-light{% if page.url == childStub.stub %} active{% endif %}" href="{{ childStub.stub | relative_url }}">{{ nav.display_name }}</a>
+                    {% assign childStub = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nav.translate_id_nav' | first %}
+                    {% capture child-stub %}{{ page.lang | prepend: '/' | append: childStub.stub }}{% endcapture %}
+                        <a class="nav-link text-light{% if page.lang == site.lang-default and page.url == childStub.stub %} active{% elsif page-url == child-stub %} active{% endif %}" href="{% unless page.lang == site.lang-default %}/{{ page.lang }}{% endunless %}{{ childStub.stub | relative_url }}">{{ site.data.config-translation | where: "translate_id", nav.translate_id_nav | map: page.lang | first }}</a>
                     {% endif %}
                     </li>
                     {%- endfor -%}
