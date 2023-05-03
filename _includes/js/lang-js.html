@@ -1,6 +1,4 @@
-
-{% assign defaultLang = site.site_languages | where_exp: 'lang', 'lang.default == true' | first | map: 'lang_id' %}
-{% capture defaultLang %}{{ defaultLang }}{% endcapture %}
+{% capture defaultLang %}{{ site.site_languages[0]['lang_id'] }}{% endcapture %}
 
 <script>
 
