@@ -7,7 +7,7 @@ layout: cloud
 cloud-fields: site.data.theme.subjects-fields
 ---
 
-## Browse Subjects
+## Buscar Categorías
 
-Use this word cloud visualization to browse terms and subjects.
-Word size is determined by frequency and all words link to a corresponding collection search.
+Utilice esta visualización de nube de palabras para buscar términos y categorías.
+El tamaño de la palabra está determinado por la frecuencia y todas las palabras se vinculan a una búsqueda de colección correspondiente.

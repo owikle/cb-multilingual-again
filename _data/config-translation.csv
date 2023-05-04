@@ -69,11 +69,6 @@ date,Browse sort by date button,Date,Fecha
 loading,Browse loading,Loading,Cargando
 items,Browse item count,items,elementos
 browse-items,Browse page title,Browse Items,Buscar ítems
-subjects-browse,Subjects cloud page title,Browse Subjects,Buscar categorías
-subjects-text,Subjects cloud page text,Use this word cloud visualization to browse terms and subjects. Word size is determined by frequency and all words link to a corresponding collection search.,Utilice esta visualización de nube de palabras para buscar términos y categorías. El tamaño de la palabra está determinado por la frecuencia y todas las palabras se vinculan a una búsqueda de colección correspondiente.
-locations-browse,Locations cloud page title,Browse Locations,Buscar ubicaciones
-locations-text,Locations cloud page text,Use this word cloud visualization to browse locations. Word size is determined by frequency and all words link to a corresponding collection search.,Utilice esta visualización de nube de palabras para buscar ubicaciones. El tamaño de la palabra está determinado por la frecuencia y todas las palabras se vinculan a los resultados la colección correspondiente.
-collection-timeline,Timeline page title,Collection Timeline,Cronología de la colección
 year,Timeline page year dropdown button,Year,Año
 data-title,Data page title,Collection Metadata,Metadatos de la colección
 data-text,Data page text,"The table below provides sorting and basic search of the collection contents. Use the 'CSV' or 'Excel' button below to download the filtered metadata you see on the page in your preferred format. Alternatively, click the 'Download' button at the top right to view the full collection metadata in various export formats.","La siguiente tabla proporciona clasificación y búsqueda básica de los contenidos de la colección. Use el botón 'CSV' o 'Excel' a continuación para descargar los metadatos filtrados que ve en la página en su formato preferido. Alternativamente, haga clic en el botón 'Descargar' en la parte superior derecha para ver los metadatos completos de la colección en varios formatos de exportación."
