@@ -7,7 +7,7 @@ gallery: true
 
 <div class="container mt-2 mb-4">
     <ul class="breadcrumb h6">
-        <li class="breadcrumb-item"><a class="text-dark" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/' | relative_url }}">{{ site.title }}</a></li>
+        <li class="breadcrumb-item"><a class="text-dark" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/' | relative_url }}">{% if page.lang == site.site_languages[0]['lang_id'] %}{{ site.title }}{% else %}{% assign altLang = site.site_languages | where: "lang_id", page.lang | first %}{{ altLang.lang_site_title }}{% endif %}</a></li>
         <li class="breadcrumb-item"><a class="text-dark" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/browse.html' | relative_url }}">{% include translate.html id="item-breadcrumb-browse" default="Browse" %}</a></li>
         <li id="bc-title" class="breadcrumb-item active text-dark" aria-current="page"></li>
     </ul>

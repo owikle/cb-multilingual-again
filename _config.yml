@@ -35,6 +35,9 @@ site_languages:
     lang_display: English
   - lang_id: es
     lang_display: Español
+    lang_site_title: CollectionBuilder-Multilingüe
+    lang_site_tagline: una plantilla para crear exhibiciones digitales simples en varios idiomas
+    lang_site_description: "CollectionBuilder-GH es una plantilla para crear pequeñas exhibiciones de colecciones digitales en páginas de GitHub diseñadas para enseñar destrezas de bibliotecología digital"
 
 # Set paths, language ids, and permalinks for pages
 defaults:
