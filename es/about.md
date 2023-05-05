@@ -1,5 +1,5 @@
 ---
-title: About
+title: Sobre
 layout: about
 # include CollectionBuilder info at bottom
 credits: true
