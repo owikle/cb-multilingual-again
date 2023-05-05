@@ -14,7 +14,7 @@ var items = [
 /* function to create cards for each item */ 
 function makeCard(obj) {
     // find item link
-    var itemHref = "{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/item.html' | relative_url | append: '?id=' }}" + obj.id;
+    var itemHref = "{% if page.lang != site.site_languages[0]['lang_id'] %}{{ '/item.html' | prepend: page.lang | prepend: '/' | relative_url | append: '?id=' }}{% else %}{{ '/item.html' | relative_url | append: '?id=' }}{% endif %}" + obj.id;
     // find images
     var imgSrc, thumbSrc;
     // add images or thumb for objects based on format
@@ -52,7 +52,7 @@ function makeCard(obj) {
     var btns = obj[{{ f.field | jsonify }}].split(";");
     for (var i = 0, len = btns.length; i < len; i++) {
       if(btns[i] != "") {
-        card += '<a class="btn btn-sm btn-secondary m-1 text-wrap" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/browse.html' | relative_url }}#' + encodeURIComponent(btns[i].trim()) + '">' + btns[i].trim() + '</a>';
+        card += '<a class="btn btn-sm btn-secondary m-1 text-wrap" href="{% if page.lang != site.site_languages[0]["lang_id"] %}{{ "/browse.html" | prepend: page.lang | prepend: "/" | relative_url }}{% else %}{{ "/browse.html" | relative_url }}{% endif %}#' + encodeURIComponent(btns[i].trim()) + '">' + btns[i].trim() + '</a>';
       }
     }
     {% else %}
@@ -64,7 +64,7 @@ function makeCard(obj) {
     card += '</p>';
     // media type
     if(obj.format != "") {
-        card += '<p class="card-text"><small><a class="btn btn-sm btn-outline-secondary" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/browse.html' | relative_url }}#' + encodeURIComponent(obj.format) + '">' + 
+        card += '<p class="card-text"><small><a class="btn btn-sm btn-outline-secondary" href="{% if page.lang != site.site_languages[0]["lang_id"] %}{{ "/browse.html" | prepend: page.lang | prepend: "/" | relative_url }}{% else %}{{ "/browse.html" | relative_url }}{% endif %}#' + encodeURIComponent(obj.format) + '">' + 
         obj.format.split("/").pop().toUpperCase() + ' <svg class="bi icon-sprite"><use xlink:href="{{ "/assets/lib/cb-icons.svg" | relative_url }}#';
         if(obj.format.includes('image')){
             card += 'icon-image';

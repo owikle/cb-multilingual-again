@@ -65,7 +65,7 @@
         {% if include.title %}<h5 class="card-title">{{ site.data.config-translation | where: 'translate_id', include.title | map: page.lang | first }}</h5>{% endif %}
         <p class="card-text">
             {% for s in topTerms %}
-            <a class="btn btn-sm btn-{{ include.btn-color | default: 'primary' }} m-1" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ s | strip | url_param_escape | prepend: '/browse.html#' | relative_url }}">{{ s | strip }}</a>{% endfor %}
+            <a class="btn btn-sm btn-{{ include.btn-color | default: 'primary' }} m-1" href="{% if page.lang != site.site_languages[0]['lang_id'] %}{{ s | strip | url_param_escape | prepend: '/browse.html#' | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ s | strip | url_param_escape | prepend: '/browse.html#' | relative_url }}{% endif %}">{{ s | strip }}</a>{% endfor %}
         </p>
     </div>
 </div>

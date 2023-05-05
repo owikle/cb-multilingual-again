@@ -56,13 +56,13 @@
             } else {
                 itemYear = record.date;
             }
-            itemLink += '<a href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ "/timeline.html" | relative_url }}#y' + itemYear + '" class="m-2 btn btn-outline-dark">{% include translate.html id="item-view-timeline" default="View on Timeline" %}</a>';
+            itemLink += '<a href="{% if page.lang != site.site_languages[0]["lang_id"] %}{{ "/timeline.html" | prepend: page.lang | prepend: "/" | relative_url }}{% else %}{{ "/timeline.html" | relative_url }}{% endif %}#y' + itemYear + '" class="m-2 btn btn-outline-dark">{% include translate.html id="item-view-timeline" default="View on Timeline" %}</a>';
         }
         {%- endif -%}
         {% if stubs contains "map" %}
         /* add link to view on map */ 
         if (record.latitude && record.longitude) {
-            itemLink += '<a href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/map.html' | relative_url }}#' + record.latitude + ',' + record.longitude + '" class="m-2 btn btn-outline-dark">{% include translate.html id="item-view-map" default="View on Map" %}</a>';
+            itemLink += '<a href="{% if page.lang != site.site_languages[0]["lang_id"] %}{{ "/map.html" | prepend: page.lang | prepend: "/" | relative_url }}{% else %}{{ "/map.html" | relative_url }}{% endif %}#' + record.latitude + ',' + record.longitude + '" class="m-2 btn btn-outline-dark">{% include translate.html id="item-view-map" default="View on Map" %}</a>';
         }
         {%- endif -%}
 
@@ -81,7 +81,7 @@
             var browseLinks = "";
             for (var i = 0, len = topics.length; i < len; i++) {
                 if (topics[i] != "") {
-                    browseLinks += '<a class="btn btn-link" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/browse.html' | relative_url }}#' + encodeURIComponent(topics[i].trim()) + '">' + topics[i].trim() + '</a> ';
+                    browseLinks += '<a class="btn btn-link" href="{% if page.lang != site.site_languages[0]["lang_id"] %}{{ "/browse.html" | prepend: page.lang | prepend: "/" | relative_url }}{% else %}{{ "/browse.html" | relative_url }}{% endif %}#' + encodeURIComponent(topics[i].trim()) + '">' + topics[i].trim() + '</a> ';
                 }
             }
             fields += '<dt class="field">{{ site.data.config-translation | where: "translate_id", f.translate_id_metadata | map: page.lang | first }}</:</dt> <dd class="field-value">' + browseLinks + '</dd>';
@@ -108,8 +108,8 @@
         } else {
             forward = itemKeys[current + 1];
         }
-        var backUrl = "{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/item.html?id=' | relative_url }}" + back;
-        var forwardUrl = "{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/item.html?id=' | relative_url }}" + forward;
+        var backUrl = "{% if page.lang != site.site_languages[0]['lang_id'] %}{{ '/item.html?id=' | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ '/item.html?id=' | relative_url }}{% endif %}" + back;
+        var forwardUrl = "{% if page.lang != site.site_languages[0]['lang_id'] %}{{ '/item.html?id=' | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ '/item.html?id=' | relative_url }}{% endif %}" + forward;
         /* add side buttons to page */
         document.getElementById("back-button").href = backUrl;
         document.getElementById("next-button").href = forwardUrl;
@@ -133,7 +133,7 @@
     } else {
         /* no item with that ID */
         document.getElementById("bc-title").innerHTML = 'Not found?';
-        document.getElementById("item-title").innerHTML = 'Sorry, item not found. Please visit <a href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ "/browse.html" | relative_url }}">Browse page</a> to find an item.';
+        document.getElementById("item-title").innerHTML = 'Sorry, item not found. Please visit <a href="{% if page.lang != site.site_languages[0]["lang_id"] %}{{ "/browse.html" | prepend: page.lang | prepend: "/" | relative_url }}{% else %}{{ "/browse.html" | relative_url }}{% endif %}">Browse page</a> to find an item.';
     }
 
     /* all done, so hide loading animation */

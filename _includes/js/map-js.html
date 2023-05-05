@@ -103,7 +103,7 @@
         /* bind feature for search */
         feature.layer = layer;{% endif %}
         /* calculate item link */
-        var itemHref = '{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ "/item.html?id=" | relative_url }}' + feature.properties.id;
+        var itemHref = '{% if page.lang != site.site_languages[0]["lang_id"] %}{{ "/item.html?id=" | prepend: page.lang | prepend: "/" | relative_url }}{% else %}{{ "/item.html?id=" | relative_url }}{% endif %}' + feature.properties.id;
         /* find object thumb based on format */
         var thumbSrc;
         if (feature.properties.youtube) {

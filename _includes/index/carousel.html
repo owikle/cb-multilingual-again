@@ -74,7 +74,7 @@
         // calculate item image location
         itemImg = carouselItems[i][1];
         // calculate item link
-        itemLink = "{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/item.html' | relative_url | append: '?id=' }}" + carouselItems[i][2];
+        itemLink = "{% if page.lang != site.site_languages[0]['lang_id'] %}{{ '/item.html' | prepend: page.lang | prepend: '/' | append: '?id=' | relative_url }}{% else %}{{ '/item.html' | relative_url | append: '?id=' }}{% endif %}" + carouselItems[i][2];
         // create indicator 
         indicator = `<button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="${i.toString()}" ${ i == 0 ? 'class="active" aria-current="true" ' : '' }aria-label="Slide ${i.toString()}"></button>`;
         // create slide

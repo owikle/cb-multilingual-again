@@ -10,17 +10,17 @@
             {{ count }}
             {% case t %}
             {% when 'image' %} 
-            <a class="text-dark" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ 'image' | prepend: '/browse.html#' | relative_url }}">{% include translate.html id="home-objects-images" default="Images" %} <svg class="bi icon-sprite text-body" fill="currentColor" aria-hidden="true"><use xlink:href="{{ '/assets/lib/cb-icons.svg' | relative_url }}#icon-image"/></svg></a><br>
+            <a class="text-dark" href="{% if page.lang != site.site_languages[0]['lang_id'] %}{{ 'image' | prepend: '/browse.html#' | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ 'image' | prepend: '/browse.html#' | relative_url }}{% endif %}">{% include translate.html id="home-objects-images" default="Images" %} <svg class="bi icon-sprite text-body" fill="currentColor" aria-hidden="true"><use xlink:href="{{ '/assets/lib/cb-icons.svg' | relative_url }}#icon-image"/></svg></a><br>
             {% when 'audio' %}
-            <a class="text-dark" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ 'audio' | prepend: '/browse.html#' | relative_url }}">{% include translate.html id="home-objects-audio" default="Audio" %} <svg class="bi icon-sprite text-body" fill="currentColor" aria-hidden="true"><use xlink:href="{{ '/assets/lib/cb-icons.svg' | relative_url }}#icon-audio"/></svg></a><br>
+            <a class="text-dark" href="{% if page.lang != site.site_languages[0]['lang_id'] %}{{ 'audio' | prepend: '/browse.html#' | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ 'audio' | prepend: '/browse.html#' | relative_url }}{% endif %}">{% include translate.html id="home-objects-audio" default="Audio" %} <svg class="bi icon-sprite text-body" fill="currentColor" aria-hidden="true"><use xlink:href="{{ '/assets/lib/cb-icons.svg' | relative_url }}#icon-audio"/></svg></a><br>
             {% when 'video' %}
-            <a class="text-dark" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ 'video' | prepend: '/browse.html#' | relative_url }}">{% include translate.html id="home-objects-video" default="Videos" %} <svg class="bi icon-sprite text-body" fill="currentColor" aria-hidden="true"><use xlink:href="{{ '/assets/lib/cb-icons.svg' | relative_url }}#icon-video"/></svg></a><br>
+            <a class="text-dark" href="{% if page.lang != site.site_languages[0]['lang_id'] %}{{ 'video' | prepend: '/browse.html#' | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ 'video' | prepend: '/browse.html#' | relative_url }}{% endif %}">{% include translate.html id="home-objects-video" default="Videos" %} <svg class="bi icon-sprite text-body" fill="currentColor" aria-hidden="true"><use xlink:href="{{ '/assets/lib/cb-icons.svg' | relative_url }}#icon-video"/></svg></a><br>
             {% else %}
-            <a class="text-dark" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ 'pdf' | prepend: '/browse.html#' | relative_url }}">{% include translate.html id="home-objects-pdf" default="PDFs" %} <svg class="bi icon-sprite text-body" fill="currentColor" aria-hidden="true"><use xlink:href="{{ '/assets/lib/cb-icons.svg' | relative_url }}#icon-pdf"/></svg></a><br>
+            <a class="text-dark" href="{% if page.lang != site.site_languages[0]['lang_id'] %}{{ 'pdf' | prepend: '/browse.html#' | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ 'pdf' | prepend: '/browse.html#' | relative_url }}{% endif %}">{% include translate.html id="home-objects-pdf" default="PDFs" %} <svg class="bi icon-sprite text-body" fill="currentColor" aria-hidden="true"><use xlink:href="{{ '/assets/lib/cb-icons.svg' | relative_url }}#icon-pdf"/></svg></a><br>
             {% endcase %}
             {% endif %}
             {%- endfor -%}
-            <a class="btn btn-sm btn-outline-secondary mt-2" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/data.html' | relative_url }}">{% include translate.html id="home-table" default="View table" %}</a>
+            <a class="btn btn-sm btn-outline-secondary mt-2" href="{% if page.lang != site.site_languages[0]['lang_id'] %}{{ '/data.html' | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ '/data.html' | relative_url }}{% endif %}">{% include translate.html id="home-table" default="View table" %}</a>
         </p>
     </div>
 </div>

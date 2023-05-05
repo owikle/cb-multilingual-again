@@ -1,0 +1,1 @@
+{% if page.lang != site.site_languages[0]['lang_id'] %}{{ site.data.theme.featured-image | prepend: include.prepend | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ site.data.theme.featured-image | prepend: include.prepend | relative_url }}{% endif %}

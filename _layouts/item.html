@@ -7,8 +7,8 @@ gallery: true
 
 <div class="container mt-2 mb-4">
     <ul class="breadcrumb h6">
-        <li class="breadcrumb-item"><a class="text-dark" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/' | relative_url }}">{% if page.lang == site.site_languages[0]['lang_id'] %}{{ site.title }}{% else %}{% assign altLang = site.site_languages | where: "lang_id", page.lang | first %}{{ altLang.lang_site_title }}{% endif %}</a></li>
-        <li class="breadcrumb-item"><a class="text-dark" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/browse.html' | relative_url }}">{% include translate.html id="item-breadcrumb-browse" default="Browse" %}</a></li>
+        <li class="breadcrumb-item"><a class="text-dark" href="{% if page.lang != site.site_languages[0]['lang_id'] %}{{ '/' | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}">{% if page.lang == site.site_languages[0]['lang_id'] %}{{ site.title }}{% else %}{% assign altLang = site.site_languages | where: "lang_id", page.lang | first %}{{ altLang.lang_site_title }}{% endif %}</a></li>
+        <li class="breadcrumb-item"><a class="text-dark" href="{% if page.lang != site.site_languages[0]['lang_id'] %}{{ '/browse.html' | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ '/browse.html' | relative_url }}{% endif %}">{% include translate.html id="item-breadcrumb-browse" default="Browse" %}</a></li>
         <li id="bc-title" class="breadcrumb-item active text-dark" aria-current="page"></li>
     </ul>
 
@@ -35,7 +35,7 @@ gallery: true
     {%- if site.data.theme.browse-buttons == true -%}
     <div class="text-center">
         <a id="prev-button" class="btn btn-secondary">&laquo; {% include translate.html id="item-previous" default="Previous" %}</a>
-        <a class="btn btn-secondary" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/browse.html' | relative_url }}">{% include translate.html id="back-to-browse" default="Back to browse" %}</a>
+        <a class="btn btn-secondary" href="{% if page.lang != site.site_languages[0]['lang_id'] %}{{ '/browse.html' | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ '/browse.html' | relative_url }}{% endif %}">{% include translate.html id="back-to-browse" default="Back to browse" %}</a>
         <a id="for-button" class="btn btn-secondary">{% include translate.html id="item-next" default="Next" %} &raquo;</a>
     </div>
 
@@ -47,7 +47,7 @@ gallery: true
     </div>
     {% else %}
     <div class="text-center">
-        <a class="btn btn-outline-primary" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/browse.html' | relative_url }}">&laquo; {% include translate.html id="back-to-collection-browse" default="Back to Collection Browse" %}</a>
+        <a class="btn btn-outline-primary" href="{% if page.lang != site.site_languages[0]['lang_id'] %}{{ '/browse.html' | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ '/browse.html' | relative_url }}{% endif %}">&laquo; {% include translate.html id="back-to-collection-browse" default="Back to Collection Browse" %}</a>
     </div>
     {% endif %}
 </div>

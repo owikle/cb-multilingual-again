@@ -5,7 +5,7 @@
   <div class="card-body">
     <h5 class="card-title">{% include translate.html id="home-time" default="Time Span" %}</h5>
     <p class="card-text h5">{{ date-range | first }} {% include translate.html id="to" default="to" %} {{ date-range | last }}
-      <br/><a href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/timeline.html' | relative_url }}" class="btn btn-sm btn-outline-secondary mt-2">{% include translate.html id="home-timeline" default="View Timeline" %}</a>
+      <br/><a href="{% if page.lang != site.site_languages[0]['lang_id'] %}{{ '/timeline.html' | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ '/timeline.html' | relative_url }}{% endif %}" class="btn btn-sm btn-outline-secondary mt-2">{% include translate.html id="home-timeline" default="View Timeline" %}</a>
     </p>
   </div>
 </div>

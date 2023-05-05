@@ -6,7 +6,7 @@
 
         <div class="col-md-7  px-4 mt-2">
 
-            <h2 class="h4"><a href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ '/' | relative_url }}" class="text-white font-weight-normal">{% if page.lang == site.site_languages[0]['lang_id'] %}{{ site.title }}{% else %}{{ altLang.lang_site_title }}{% endif %}</a></h2>
+            <h2 class="h4"><a href="{% if page.lang != site.site_languages[0]['lang_id'] %}{{ '/' | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ '/' | relative_url }}{% endif %}" class="text-white font-weight-normal">{% if page.lang == site.site_languages[0]['lang_id'] %}{{ site.title }}{% else %}{{ altLang.lang_site_title }}{% endif %}</a></h2>
             <p class="text-white"><small>{% if page.lang == site.site_languages[0]['lang_id'] %}{{ site.description }}{% else %}{{ altLang.lang_site_description }}{% endif %}</small></p>
             <nav>
                 <ul id="footer-nav" class="nav nav-pills ">
@@ -16,11 +16,11 @@
                     <li class="nav-item">
                     {% if nav.stub %}
                     {% capture page-stub %}{{ page.lang | prepend: '/' | append: nav.stub }}{% endcapture %}
-                        <a class="nav-link text-light{% if page.lang == site.site_languages[0]['lang_id'] and page.url == nav.stub %} active{% elsif page-url == page-stub %} active{% endif %}" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ nav.stub | relative_url }}">{{ site.data.config-translation | where: "translate_id", nav.translate_id_nav | map: page.lang | first }}</a>
+                        <a class="nav-link text-light{% if page.lang == site.site_languages[0]['lang_id'] and page.url == nav.stub %} active{% elsif page-url == page-stub %} active{% endif %}" href="{% if page.lang != site.site_languages[0]['lang_id'] %}{{ nav.stub | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ nav.stub | relative_url }}{% endif %}">{{ site.data.config-translation | where: "translate_id", nav.translate_id_nav | map: page.lang | first }}</a>
                     {%- else -%}
                     {% assign childStub = site.data.config-nav | where_exp: 'item', 'item.dropdown_parent == nav.translate_id_nav' | first %}
                     {% capture child-stub %}{{ page.lang | prepend: '/' | append: childStub.stub }}{% endcapture %}
-                        <a class="nav-link text-light{% if page.lang == site.site_languages[0]['lang_id'] and page.url == childStub.stub %} active{% elsif page-url == child-stub %} active{% endif %}" href="{% unless page.lang == site.site_languages[0]['lang_id'] %}/{{ page.lang }}{% endunless %}{{ childStub.stub | relative_url }}">{{ site.data.config-translation | where: "translate_id", nav.translate_id_nav | map: page.lang | first }}</a>
+                        <a class="nav-link text-light{% if page.lang == site.site_languages[0]['lang_id'] and page.url == childStub.stub %} active{% elsif page-url == child-stub %} active{% endif %}" href="{% if page.lang != site.site_languages[0]['lang_id'] %}{{ childStub.stub | prepend: page.lang | prepend: '/' | relative_url }}{% else %}{{ childStub.stub | relative_url }}{% endif %}">{{ site.data.config-translation | where: "translate_id", nav.translate_id_nav | map: page.lang | first }}</a>
                     {% endif %}
                     </li>
                     {%- endfor -%}
