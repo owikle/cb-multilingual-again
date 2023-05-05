@@ -7,7 +7,3 @@ permalink: /search/
 ---
 
 ## Full metadata search:
-
-{%- assign fields = site.data.config-search | where_exp: 'field', 'field.index == true and field.lang contains page.lang' | map: 'field' -%}
-
-{{ fields }}
