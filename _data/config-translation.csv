@@ -85,6 +85,9 @@ data-timeline,Download data timeline title,Timeline,Cronología
 data-timeline-text,Download data timeline text,A time-focused JSON data export designed for use with <a href='https://timeline.knightlab.com/' target='_blank' rel='noopener'>TimelineJS</a>.,Una exportación de datos JSON centrada en el tiempo diseñada para su uso con <a href='https://timeline.knightlab.com/' target='_blank' rel='noopener'>TimelineJS</a>.
 data-source,Download data source code title,Website Source Code,Código fuente del sitio web
 data-source-text,Download data source code text,GitHub repository containing source code for this project built with <a href='https://github.com/CollectionBuilder/collectionbuilder-gh' target='_blank' rel='noopener'>CollectionBuilder-GH</a>.,Repositorio de GitHub que contiene el código fuente de este proyecto creado con <a href='https://github.com/CollectionBuilder/collectionbuilder-gh' target='_blank' rel='noopener'>CollectionBuilder-GH</a>.
+search-results,Indicates number of results found on the search page,Result(s) found, Resultado(s) encontrados
+search-options-button,Search options button on Search page,Search Options,Opciones de Búsqueda
+search-button,
 contents,About page table of contents card title,Contents,Contenido
 tech,About page Tech heading,Tech,Tecnología
 tech-heading,Technical card title,Technical Credits - CollectionBuilder,Créditos técnicos - CollectionBuilder

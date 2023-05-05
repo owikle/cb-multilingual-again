@@ -5,7 +5,7 @@ custom-foot: js/lunr-js.html
 ---
 {%- assign fields = site.data.config-search | where_exp: 'field', 'field.index == "true" and field.lang contains page.lang' | map: 'field' -%}
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-outline-primary float-end" data-bs-toggle="modal" data-bs-target="#operators">Search Options</button>
+<button type="button" class="btn btn-outline-primary float-end" data-bs-toggle="modal" data-bs-target="#operators">{% include translate.html id="search-options-button" default="Search Options" %}</button>
 <!-- Modal -->
 <div class="modal fade" id="operators" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -34,7 +34,7 @@ custom-foot: js/lunr-js.html
         <div class="input-group input-group-lg">
             <input id="lunrSearchBox" class="form-control " type="text" placeholder="Enter your search term..." >
             <button class="btn btn-success" type="submit">
-                Search
+                {% include translate.html id="search" default="Search" %}
             </button>
         </div>
     </form>
