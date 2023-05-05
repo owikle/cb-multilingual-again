@@ -87,7 +87,11 @@ data-source,Download data source code title,Website Source Code,Código fuente d
 data-source-text,Download data source code text,GitHub repository containing source code for this project built with <a href='https://github.com/CollectionBuilder/collectionbuilder-gh' target='_blank' rel='noopener'>CollectionBuilder-GH</a>.,Repositorio de GitHub que contiene el código fuente de este proyecto creado con <a href='https://github.com/CollectionBuilder/collectionbuilder-gh' target='_blank' rel='noopener'>CollectionBuilder-GH</a>.
 search-results,Indicates number of results found on the search page,Result(s) found, Resultado(s) encontrados
 search-options-button,Search options button on Search page,Search Options,Opciones de Búsqueda
-search-button,
+search-fuzzy,,Fuzzy search powered by,Búsqueda borrosa impulsado por
+search-load,,May take a second to load large collections!,¡Puede tomar un segundo cargar grandes colecciones!
+search-google-cse,,"Alternatively, try","Alternativamente, intente"
+search-site-search,,site search,búsqueda de sitio
+search-lunr-options,,Lunr Search Options,Opciones de búsqueda de Lunr
 contents,About page table of contents card title,Contents,Contenido
 tech,About page Tech heading,Tech,Tecnología
 tech-heading,Technical card title,Technical Credits - CollectionBuilder,Créditos técnicos - CollectionBuilder
