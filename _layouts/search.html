@@ -3,7 +3,7 @@
 layout: page 
 custom-foot: js/lunr-js.html
 ---
-{%- assign fields = site.data.config-search | where_exp: 'field', 'field.index == "true" and field.lang contains page.lang' | map: 'field' -%}
+{%- assign fields = site.data.config-search | where_exp: 'field', 'field.index == "true"' | where_exp: 'field', 'field.lang contains page.lang' | map: 'field' -%}
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-outline-primary float-end" data-bs-toggle="modal" data-bs-target="#operators">{% include translate.html id="search-options-button" default="Search Options" %}</button>
 <!-- Modal -->
