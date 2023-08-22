@@ -37,7 +37,7 @@
             itemImage= '<div class="ratio ratio-16x9"><iframe title="' + objectTitle + '"src="https://player.vimeo.com/video/' + record.vimeo + '" allowfullscreen></iframe></div>';
             itemLink= '<a href="https://vimeo.com/' + record.vimeo + '" target="_blank" rel="noopener" class="m-2 btn btn-dark" title="Object download">{% include translate.html id="item-download-vimeo" default="View on Vimeo" %}</a>';
         } else if (format.includes('video')) {
-            itemImage= '<video controls class="w-100"><source src="' + objectLink + '">{% include translate.html id="item-download-vimeo" default="Your browser does not support the video element." %}</audio>';
+            itemImage= '<video controls class="w-100"><source src="' + objectLink + '">{% include translate.html id="item-download-support" default="Your browser does not support the video element." %}</audio>';
             itemLink= '<a href="' + objectLink + '" target="_blank" rel="noopener" class="m-2 btn btn-dark" title="Object download">{% include translate.html id="item-download-video" default="Download Video File" %}</a>';
         } else {
             /* fall back to no preview if it doesn't know the format */
